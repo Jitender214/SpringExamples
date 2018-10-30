@@ -1,0 +1,60 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="emp" class="com.ConstructorDI.Employee">
+	<constructor-arg value="10" type="int">
+	<!-- The type attribute specifies that int parameter constructor will be invoked. -->
+	</constructor-arg>
+	<!-- <constructor-arg value="10">
+	If you don't specify the type attribute in the constructor-arg element, by default string type constructor will be invoked.
+	</constructor-arg> -->
+	<!-- <constructor-arg value="10" type="String">
+	string type constructor will be invoked.
+	</constructor-arg> -->
+	</bean>
+	
+	<bean id="question" class="com.ConstructorDI.Question">
+	<constructor-arg value="1"></constructor-arg>
+	<constructor-arg value="Oops Concepts"></constructor-arg>
+	<constructor-arg>
+	<list>
+	<value>Abstration</value>
+	<value>Inheritance</value>
+	<value>Polymorphisam</value>
+	<value>Encapsulation</value>
+	</list>
+	</constructor-arg>
+	</bean>
+	
+	<bean id="student" class="com.ConstructorDI.Student">
+	<constructor-arg value="1000"></constructor-arg>
+	<constructor-arg><map>
+	<entry key="Bandari" value="jitender"></entry>
+	<entry key="B" value="jitender"></entry>
+	</map></constructor-arg>
+	</bean>
+	
+	<bean id="coun" class="com.SetterInjectionCollection.Country">
+	<property name="country" value="India"></property>
+	<!-- if we give property name ="coun" Exception in thread "main" org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'coun' defined in class path resource [applicationContext1.xml]: Error setting property values; nested exception is org.springframework.beans.NotWritablePropertyException: Invalid property 'coun' of bean class [com.SetterInjectionCollection.Country]: Bean property 'coun' is not writable or 
+	has an invalid setter method. Does the parameter type of the setter match the return type of the getter? -->
+	<property name="statenames"><set>
+	<value>AP</value>
+	<value>Telangana</value>
+	<value>Tamilnadu</value>
+	</set></property>
+	</bean> 
+    <bean id="countr" class="com.SetterInjectionCollection.Country1">
+	<property name="country1" value="India"></property>
+	<property name="statenames1">
+	<map>
+	<entry key="1" value="AP"></entry>
+	<entry key="2" value="Telangana"></entry>
+	</map>
+	</property>
+	</bean>
+	
+		
+</beans>

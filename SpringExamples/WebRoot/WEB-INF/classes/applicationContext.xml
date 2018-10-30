@@ -1,0 +1,70 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="emp" class="com.zensar.Employee">
+	<property name="empid" value="123" />
+	<property name="empname" value="Jitender B" />
+	</bean>
+	
+	<bean id="cust" class="com.zensar.Customer">
+	<property name="list">
+		<list>
+			<value>1</value>
+			<ref bean="PersonBean" /> 
+		</list>
+	</property>
+	</bean>
+	<bean id="PersonBean" class="com.zensar.Person">
+		<property name="id" value="123"></property>
+		<property name="name" value="Spring examples"></property>
+	</bean>
+	<bean id="countryBean" class="com.SetterDI.Country">
+	<property name="countryname" value="India"></property>
+	<property name="capital" ref="capitalBean"></property>
+	</bean>
+	<bean id="capitalBean" class="com.SetterDI.Capital">
+	<property name="capitalName" value="Delhi"></property>
+	</bean>
+
+	<bean id="studentBean" class="com.ConstructDI.Student">
+	<constructor-arg name="sno" value="40228" type="int"></constructor-arg>
+	<constructor-arg name="sname" value="Jitender Bandari" type="String"></constructor-arg>
+	<constructor-arg name="add" ref="addBean"></constructor-arg> <!-- reference is for using to get Addess bean into Student -->
+	</bean>
+	<bean id="addBean" class="com.ConstructDI.Address">
+	<property name="address" value="Pune"></property>
+	</bean>
+	
+	<bean id="counBean" class="com.scope.Country"><!-- by default scope is singleton -->
+	<property name="countryname" value="INDIA"></property>
+	</bean>
+	<bean id="counBean1" class="com.scope.Country1" scope="prototype">
+	</bean>
+	<bean id="counBean2" class="com.springList.Country2">
+	<property name="listOfStates">
+	<list>
+	<value>	Andhra Pradesh</value>
+	<value>	Maharastra</value>
+	<value>	Telangana</value>
+	</list></property>
+	</bean>
+	<bean id="student" class="com.SpringMap.Student">
+	<property name="stuNames">
+	<map>
+	
+	<entry key="1" value="Jitender"></entry>
+	<entry key="2" value="Rashid"></entry>
+	</map></property>
+	</bean>
+	<bean id="state" class="com.springAutowire.State" autowire="byName">
+	<property name="stateName" value="Telangana"></property>
+	<!-- byName=Names of the bean match with the 	name of members variables of state class -->
+		<!-- byType = it looks for they type even though its created with different name for which class the bean is defind and if the calls matches with 
+		member variable of class then it automatically does the wiring -->
+	</bean>
+	<bean id="district" class="com.springAutowire.District">
+	<property name="districtNames" value="karimnagar"></property>
+	</bean>
+</beans>

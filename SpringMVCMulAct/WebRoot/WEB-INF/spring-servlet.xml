@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+http://www.springframework.org/schema/context  
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+<context:component-scan base-package="com.mvc"/>
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/jsp/" />
+      <property name="suffix" value=".jsp" />
+   </bean>	
+   <bean id="mac" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+   <property name="paramName">
+   <value>submit</value></property>
+   </bean>
+   <bean name="/myservice.spring" class="com.mvc.MyController">
+   <property name="methodNameResolver">
+   <ref local="mac"></ref></property>
+   </bean>
+   <bean id="prop" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+   <property name="mappings">
+   <props>
+   <prop key="/add.spring">add</prop>
+   <prop key="/del.spring">del</prop>
+   </props>
+   </property>
+   </bean>
+   <bean name="/add.spring /del.spring" class="com.mvc.MultiController">
+   <property name="methodNameResolver">
+   <ref local="prop"></ref></property>
+   </bean>
+</beans>
